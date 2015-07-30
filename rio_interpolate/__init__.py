@@ -37,10 +37,10 @@ def addAttr(geoJSON, values):
             yield f
 
 def loadRaster(sampleraster, bounds, bidx):
-    with rio.open('/Users/dnomadb/Documents/out1.tif') as src:
+    with rio.open(sampleraster) as src:
         upperLeft = src.index(bounds.left, bounds.top)
         lowerRight = src.index(bounds.right, bounds.bottom)
-        # print upperLeft, lowerRight
+
         out = np.zeros((1, lowerRight[0] - upperLeft[0] + 1, lowerRight[1] - upperLeft[1] + 1), dtype=src.meta['dtype'])
         return np.array([src.read(bidx, out=out, window=((upperLeft[0], lowerRight[0] + 1),(upperLeft[1], lowerRight[1] + 1)), boundless=True)[2:]])
 

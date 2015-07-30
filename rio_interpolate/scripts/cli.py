@@ -19,6 +19,7 @@ def interpolate(ctx, geojson, sampleraster, bidx, outfile):
         bounds = rio_interpolate.getBounds(features)
 
         ras_vals = rio_interpolate.loadRaster(sampleraster, bounds, bidx)
+
         output_values = rio_interpolate.interpolatePoints(
         ras_vals,
         rio_interpolate.parseLine(features[0]),
